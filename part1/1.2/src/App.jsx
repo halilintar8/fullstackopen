@@ -1,8 +1,37 @@
 // App.jsx
 import React from 'react';
-import Header from './Header';
-import Content from './Content';
-import Total from './Total';
+
+const Header = ({ course }) => {
+  return (
+    <h1>{course}</h1>
+  );
+};
+
+const Part = ({ name, exercises }) => {
+  return (
+    <p>
+      {name} {exercises}
+    </p>
+  );
+};
+
+const Content = ({ parts }) => {
+  return (
+    <div>
+      {parts.map((part, index) => (
+        <Part key={index} name={part.name} exercises={part.exercises} />
+      ))}
+    </div>
+  );
+};
+
+const Total = ({ exercises }) => {
+  const totalExercises = exercises.reduce((sum, part) => sum + part, 0);
+
+  return (
+    <p>Number of exercises {totalExercises}</p>
+  );
+};
 
 const App = () => {
   const course = 'Half Stack application development';
